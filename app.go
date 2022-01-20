@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/gorilla/mux"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -127,7 +128,14 @@ func (a *App) Initialize() {
 	
 	// Connect to MongoDB Instance
 	// Set client options
-	clientOptions := options.Client().ApplyURI("mongodb://localhost:27017")
+
+	//Checking that an environment variable is present or not.
+  	MONGO_URI, ok := os.LookupEnv("MONGO_URI")
+  	if !ok {
+		fmt.Println("CONNECTING TO LOCAL MONGODB")
+    	MONGO_URI = "mongodb://localhost:27017"
+  	} 
+	clientOptions := options.Client().ApplyURI(MONGO_URI)
 
 	// Connect to MongoDB
 	client, err := mongo.Connect(context.TODO(), clientOptions)
