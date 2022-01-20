@@ -25,16 +25,6 @@ type Instrument struct {
 	Price float64 `json:"price" bson:"price"`
 }
 
-
-func (a *App) count() int{
-	count, err:= a.DB.CountDocuments(context.TODO(), bson.M{})
-	newCount := int(count)
-	if err != nil{
-		log.Fatal(err)
-	}
-	return newCount+1
-}
-
 // Create Instruments
 func (a *App) createInstrument(w http.ResponseWriter, r *http.Request){
 	var i Instrument
