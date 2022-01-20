@@ -173,5 +173,6 @@ func (a *App) initializeRouters() {
 }
 
 func (a *App) Run(addr string) {
+	fmt.Println("Server Listening on Port 8000")
 	log.Fatal(http.ListenAndServe(addr, a.Router))
 }
