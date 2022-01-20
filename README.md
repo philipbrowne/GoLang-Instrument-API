@@ -2,6 +2,8 @@
 
 Example of a basic REST API with Musical Instruments that runs CRUD functions.
 
+Uses Mux Library and MongoDB Driver
+
 ## Local Deployment in Project Folder
 
 `go run main.go app.go`
